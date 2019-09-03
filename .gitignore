@@ -1,0 +1,14 @@
+.idea/
+*.pyc
+*__pycache__/
+*test_results/
+dist/
+*.egg-info/
+*.log
+*.log.*
+*.ipynb_checkpoints/
+*Untitled.ipynb
+*/data/*
+*/result/*
+*.dat
+*.fuse_hidden*

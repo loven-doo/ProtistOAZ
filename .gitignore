@@ -1,4 +1,5 @@
 .idea/
+venv/
 *.pyc
 *__pycache__/
 *test_results/
@@ -9,6 +10,8 @@ dist/
 *.ipynb_checkpoints/
 *Untitled.ipynb
 */data/*
+imicrobe_data/source/*
+imicrobe_data/prepared/
 */result/*
 *.dat
 *.fuse_hidden*

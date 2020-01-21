@@ -1,1 +1,1 @@
-
+from imicrobe_data.preparation import prepare_data

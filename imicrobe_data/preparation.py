@@ -39,9 +39,11 @@ def prepare_data(fna_path=FNA_PATH,
     samples_dict = get_samples_dict(fna_meta_path=fna_meta_path, sep=fna_meta_sep)
 
     rna_seqs = SeqsDict.load_from_file(rna_18s_path, seqs_format="fasta", low_memory=False)
+    print("18S rRNA sequences read")
     rna_names_conv = convert_rna_names(rna_seqs, samples_dict)
     print("\n")
     fna_seqs = SeqsDict.load_from_file(fna_path, seqs_format="fasta", low_memory=True)
+    print("Transcriptome sequences read")
     fna_names_conv = convert_fna_names(fna_seqs, rna_names_conv)
 
     transcriptomes = list()
@@ -92,7 +94,8 @@ def convert_fna_names(in_fna_seqs, sample_names):
     for seq_name in in_fna_seqs:
         transformed_name = None
         sample_name = None
-        transformed_name = seq_name.split(" ")[1].split("=")[-1]
+        transformed_name_list = seq_name.split(" ")[1].split("=")[-1].split("-")
+        transformed_name = transformed_name_list[0][:10] + "-" + transformed_name_list[1]
         sample_name = transformed_name.split("-")[0]
         if sample_name in sample_names:
             if transformed_name in transformed_names[sample_name]:

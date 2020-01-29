@@ -24,8 +24,42 @@ TRANSCRIPTOMES_PATH = os.path.join(PREPARED_DIR, "transcriptomes.json")
 
 
 def prepare_data_cmd():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("-fna",
+                        "--fna-path",
+                        help="Path to source Imicrobe project fna",
+                        required=False,
+                        default=None)
+    parser.add_argument("-meta",
+                        "--fna-meta-path",
+                        help="Path to source Imicrobe project meta table",
+                        required=False,
+                        default=None)
+    parser.add_argument("-rna",
+                        "--rna-18s-path",
+                        help="Path to source Imicrobe project 18S rRNA sequences",
+                        required=False,
+                        default=None)
+    parser.add_argument("-tres",
+                        "--transcriptomes-path",
+                        help="Path to transcriptomes info json (the result of preparation)",
+                        required=False,
+                        default=None)
+    parser.add_argument("-pfna",
+                        "--prepared-fna-path",
+                        help="Path to prepared fna",
+                        required=False,
+                        default=None)
+    parser.add_argument("-prna",
+                        "--prepared-18s-path",
+                        help="Path to prepared 18S rRNA sequences",
+                        required=False,
+                        default=None)
     
-    prepare_data()
+    cmd_args = parser.parse_args()
+
+    prepare_data(**cmd_args.__dict__)
     
 
 def prepare_data(fna_path=FNA_PATH, 
@@ -56,6 +90,7 @@ def prepare_data(fna_path=FNA_PATH,
                                          fna_id_list=list(fna_names_conv[sample_name])).get_json())
     with open(transcriptomes_path, "w") as transcriptomes_f:
         json.dump(transcriptomes, transcriptomes_f, indent=2)
+    print("%s trascriptomes prepared" % len(transcriptomes))
 
     rna_seqs.rename_seqs({rna_names_conv[t_name]: t_name for t_name in fna_names_conv})
     rna_seqs.get_sample(list(fna_names_conv.keys()), low_memory=False).dump(prepared_18s_path, seqs_format="fasta")

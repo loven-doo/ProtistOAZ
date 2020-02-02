@@ -30,32 +30,32 @@ def prepare_data_cmd():
                         "--fna-path",
                         help="Path to source Imicrobe project fna",
                         required=False,
-                        default=None)
+                        default=FNA_PATH)
     parser.add_argument("-meta",
                         "--fna-meta-path",
                         help="Path to source Imicrobe project meta table",
                         required=False,
-                        default=None)
+                        default=FNA_META_PATH)
     parser.add_argument("-rna",
                         "--rna-18s-path",
                         help="Path to source Imicrobe project 18S rRNA sequences",
                         required=False,
-                        default=None)
+                        default=RNA_18S_PATH)
     parser.add_argument("-tres",
                         "--transcriptomes-path",
                         help="Path to transcriptomes info json (the result of preparation)",
                         required=False,
-                        default=None)
+                        default=TRANSCRIPTOMES_PATH)
     parser.add_argument("-pfna",
                         "--prepared-fna-path",
                         help="Path to prepared fna",
                         required=False,
-                        default=None)
+                        default=PREPARED_FNA_PATH)
     parser.add_argument("-prna",
                         "--prepared-18s-path",
                         help="Path to prepared 18S rRNA sequences",
                         required=False,
-                        default=None)
+                        default=PREPARED_18S_PATH)
     
     cmd_args = parser.parse_args()
 

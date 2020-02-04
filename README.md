@@ -6,6 +6,8 @@ To run this code you need to clone the repo, download the [archive](link) with d
 ## Requirements
 - Python >= 3.6  
 - HMMER3  
+- FastME >= 2.0  
+- MSAPROBS  
 ### Python packages:
 &nbsp; - eagle >= 0.0.1
 

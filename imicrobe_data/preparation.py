@@ -12,12 +12,13 @@ from eagledb.scheme import GenomeInfo
 from eagle.lib.seqs import SeqsDict
 
 
-SOURCES_DIR = "source"
+IMICROBE_DATA_DIR = "imicrobe_data"
+SOURCES_DIR = os.path.join(IMICROBE_DATA_DIR, "source")
 FNA_PATH = os.path.join(SOURCES_DIR, "CAM_P_0001000.nt.fa")
 FNA_META_PATH = os.path.join(SOURCES_DIR, "fna_meta.csv")
 FNA_META_SEP = ","
 RNA_18S_PATH = os.path.join(SOURCES_DIR, "18s.fasta")
-PREPARED_DIR = "prepared"
+PREPARED_DIR = os.path.join(IMICROBE_DATA_DIR, "prepared")
 PREPARED_18S_PATH = os.path.join(PREPARED_DIR, "18s.fasta")
 PREPARED_FNA_PATH = os.path.join(PREPARED_DIR, "transcriptomes.fna")
 TRANSCRIPTOMES_PATH = os.path.join(PREPARED_DIR, "transcriptomes.json")

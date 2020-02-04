@@ -11,18 +11,19 @@ from eagle.lib.orthan import hom_search_profile
 
 NUM_THREADS = 4
 
-REPO_DATA_DIR = os.path.join("..", "repo_data")
+REPO_DATA_DIR = "repo_data"
 OAZ_REPR_FASTA = os.path.join(REPO_DATA_DIR, "oaz_repr.fasta")
 OAZ_REPR_ALN = os.path.join(REPO_DATA_DIR, "oaz_repr_aln.fasta")
 OAZ_REPR_HMM = os.path.join(REPO_DATA_DIR, "oaz_repr.hmm")
 OAZ_REPR_INFO = os.path.join(REPO_DATA_DIR, "oaz_repr_info.json")
-IMICROBE_DATA_DIR = os.path.join("..", "imicrobe_data", "prepared")
+IMICROBE_DATA_DIR = os.path.join("imicrobe_data", "prepared")
 RNA_FASTA = os.path.join(IMICROBE_DATA_DIR, "18s.fasta")
 REF_TREE_NWK = os.path.join(REPO_DATA_DIR, "18S_rRNA_tree.nwk")
 TRANSCRIPTOMES_PATH = os.path.join(IMICROBE_DATA_DIR, "transcriptomes.json")
 
-DATA_DIR = "data"
-RESULT_DIR = "result"
+HOMOLOGS_DIR = "homologs"
+DATA_DIR = os.path.join(HOMOLOGS_DIR, "data")
+RESULT_DIR = os.path.join(HOMOLOGS_DIR, "result")
 
 
 def build_ref_tree(ref_aln_list, seqs2orgs=None, ref_tree_nwk=None):
@@ -54,7 +55,7 @@ def build_oaz_repr_profile(oaz_repr_fasta, oaz_repr_hmm, oaz_repr_info=None, oaz
     if oaz_repr_aln is not None:
         mult_aln.dump_alignment(aln_path=oaz_repr_aln, aln_format="fasta")
     mult_aln.get_hmm_profile(profile_path=oaz_repr_hmm, method="hmmer")
-    profile_info = SeqProfileInfo(name="OAZ_repr", path=oaz_repr_hmm, seq_type="prot")
+    profile_info = SeqProfileInfo(name="OAZ_repr", path=os.path.basename(oaz_repr_hmm), seq_type="prot")
     if oaz_repr_info is not None:
         with open(oaz_repr_info, "w") as profile_info_f:
             json.dump(profile_info.get_json(), profile_info_f, indent=2)
